@@ -2,6 +2,8 @@ package developer.osmanforhad.androidsharedpreferences;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -51,6 +53,19 @@ public class MainActivity extends AppCompatActivity {
     //Method for store data into shared preferences
     public void SaveData(){
 
+        //User input to String Conversion
+        String fname = editText1.getText().toString();
+        String lname = editText2.getText().toString();
+
+        //shared preferences instance
+        SharedPreferences sharedPreferences = getSharedPreferences("myFile", Context.MODE_PRIVATE);
+        //edit SharedPreferences
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        //put user input inside the SharedPreferences memory
+        editor.putString("fnameKey", fname);
+        editor.putString("lnameKey", lname);
+        //save data into SharedPreferences memory
+        editor.commit();
     }
 
     //Method for fetch data from shared preferences
