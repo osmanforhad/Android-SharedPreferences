@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("lnameKey", lname);
         //save data into SharedPreferences memory
         editor.commit();
+        //success message
+        Toast.makeText(MainActivity.this, "User Data Saved Successfully inside your App Shared Memory", Toast.LENGTH_SHORT).show();
     }
 
     //Method for fetch data from shared preferences
