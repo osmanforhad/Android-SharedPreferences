@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,7 +71,21 @@ public class MainActivity extends AppCompatActivity {
 
     //Method for fetch data from shared preferences
     public void loadData(){
+        //shared preferences instance
+        SharedPreferences sharedPreferences = getSharedPreferences("myFile", Context.MODE_PRIVATE);
+        //check SharedPreferences memory for data exists or not
+        if(sharedPreferences.contains("fnameKey") && sharedPreferences.contains("lnameKey")){
+            //load data from SharedPreferences memory
+          String FirstName =  sharedPreferences.getString("fnameKey", "First Name Not Found");
+            String LastName =  sharedPreferences.getString("lnameKey", "Last Name Not Found");
 
+            //Display Data
+            textView1.setText(FirstName);
+            textView2.setText(LastName);
+        }
+        else {
+            Toast.makeText(MainActivity.this, "There is no data inside your App Shared Memory", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
